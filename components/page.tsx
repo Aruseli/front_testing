@@ -1,64 +1,15 @@
-import { WithPackagesInstalled } from '@deep-foundation/react-with-packages-installed';
-import { WithProvidersAndLogin } from './with-providers-and-login';
-import { StoreProvider } from './store-provider';
-import { Button, Stack, Text } from '@chakra-ui/react';
-import { useLocalStore } from '@deep-foundation/store/local';
-import { CapacitorStoreKeys } from '../imports/capacitor-store-keys';
-import {
-  DeepClient,
-  DeepProvider,
-  useDeep,
-} from '@deep-foundation/deeplinks/imports/client';
-import { ErrorAlert } from './error-alert';
+import { Box, Text } from '@chakra-ui/react';
+import { useQueryStore } from '@deep-foundation/store/query';
+import { Switch } from './switch-mode';
 
-export interface PageParam {
-  renderChildren: (param: {
-    deep: DeepClient;
-  }) => JSX.Element;
-}
+export function Page() {
+  const [page, setPage] = useQueryStore('page', '/');
 
-export function Page({ renderChildren }: PageParam) {
-  return (
-    <StoreProvider>
-      <WithProvidersAndLogin>
-        <WithDeep
-          renderChildren={({ deep }) => {
-            console.log({ deep });
-            return (
-              <WithPackagesInstalled
-              deep={deep}
-                packageNames={[]}
-                renderIfError={(error) => <ErrorAlert title={error.message} />}
-                renderIfNotInstalled={(packageNames) => (
-                  <>
-                    <ErrorAlert
-                      title={
-                        `Install these deep packages to proceed: ${packageNames.join(
-                          ', '
-                        )}`
-                      }
-                    />
-                  </>
-                )}
-                renderIfLoading={() => (
-                  <Text>Checking if deep packages are installed...</Text>
-                )}
-              >
-                {renderChildren({ deep })}
-              </WithPackagesInstalled>
-            );
-          }}
-        />
-      </WithProvidersAndLogin>
-    </StoreProvider>
+  return (<Box w='100vw' h='100vh' position='relative' display='grid' gridTemplateColumns='repeat(auto-fit, minmax(300px, 1fr))' gap='2rem'>
+      <Switch />
+      {/* <PageContent /> */}
+      <Text color='cyDark'>123</Text>
+      {/* <Footer setPage={setPage} page={page} /> */}
+    </Box>
   );
-}
-
-interface WithDeepProps {
-  renderChildren: (param: { deep: DeepClient }) => JSX.Element;
-}
-
-function WithDeep({ renderChildren }: WithDeepProps) {
-  const deep = useDeep();
-  return deep.linkId ? renderChildren({ deep }) : null;
 }
