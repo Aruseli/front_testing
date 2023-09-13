@@ -39,6 +39,7 @@
     "@deep-foundation/store": "^0.0.19",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
+    "@react-hook/debounce": "^4.0.0",
     "case-anything": "^2.1.13",
     "dotenv": "^16.0.3",
     "dotenv-load": "^2.0.1",
