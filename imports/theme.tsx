@@ -130,6 +130,50 @@ const themeChakra = extendTheme({
   space: {
     4.5: '1.125rem',
   },
+  textStyles: {
+    h1: {
+      fontSize: '4xl',
+      fontWeight: 'medium',
+      textTransform: 'uppercase',
+      lineHeight: '1.2',
+    },
+    h2: {
+      fontSize: '2xl',
+      fontWeight: 'semibold',
+      textTransform: 'uppercase',
+    },
+    h3: {
+      fontWeight: 'regular',
+      lineHeight: '1.2',
+      textTransform: 'uppercase',
+      fontSize: 'xl',
+    },
+    h4: {
+      fontWeight: 'regular',
+      lineHeight: '1.2',
+      textTransform: 'uppercase',
+      fontSize: 'md',
+      color: 'text',
+    },
+    quoteTitle: {
+      fontSize: 'sm',
+      lineHeight: '1.5',
+      fontWeight: 'medium',
+      color: 'text',
+    },
+    quoteSubtitle: {
+      fontSize: 'sm',
+      lineHeight: '1.5',
+      fontWeight: 'regular',
+      color: 'text',
+    },
+    body: {
+      fontSize: 'xs',
+      lineHeight: '1.5',
+      fontWeight: 'regular',
+      color: 'text',
+    }
+  },
   components: {
     Tabs: {
       variants: {

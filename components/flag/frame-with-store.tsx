@@ -1,10 +1,10 @@
 import { Box } from '@chakra-ui/react';
 import { useDebounceCallback } from '@react-hook/debounce';
-import { motion, useInView, useSpring, useTransform } from 'framer-motion';
+import { motion, useInView, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { useRef, useState } from 'react';
 
 
-export function DeepFrame({
+export function DeepFrameNew({
   blockWidth = 300,
   blockHeight = 300,
   onTapButton,
@@ -25,28 +25,20 @@ export function DeepFrame({
 
   const areaWidth = blockWidth * 1.25;
   const areaHeight = blockHeight * 1.25;
-  const startX = areaWidth / 2;
-  const startY = areaHeight / 2;
-
-  const x = useSpring(startX, { mass: 0.5, bounce: 0.25, stiffness: 200, damping: 100 });
-  const y = useSpring(startY, { mass: 0.5, bounce: 0.25, stiffness: 200, damping: 100 });
+  const x = useMotionValue(blockWidth / 2);
+  const y = useMotionValue(blockHeight / 2);
 
   const rotateX = useTransform(y, [0, areaWidth], [15, -15]);
   const rotateY = useTransform(x, [0, areaHeight], [-15, 15]);
+  console.log('rotateX', rotateX);
+  console.log('rotateY', rotateY);
+  console.log('x', x);
+  console.log('y', y);  
   
   function handleMouseMove(event) {
     const rect = event.currentTarget.getBoundingClientRect();
     x.set(event.clientX - rect.left);
     y.set(event.clientY - rect.top);
-    if (current == 1) {
-      x.set(startY);
-      y.set(startY);
-    }
-  }
-  
-  function handleMouseLeave() {
-    x.set(startY);
-    y.set(startY);
   }
 
   const variants = {
@@ -65,8 +57,8 @@ export function DeepFrame({
   return (<Box as={motion.div}
       ref={ref}
       sx={{
-        width: 450,
-        height: 450,
+        width: areaWidth,
+        height: areaHeight,
         display: "flex",
         placeItems: "center",
         placeContent: "center",
@@ -75,8 +67,9 @@ export function DeepFrame({
         bg: 'white',
         position: 'relative'
       }}
+    onClick={() => console.log('click')}
       onMouseMove={handleMouseMove}
-      onMouseLeave={() => handleMouseLeave()}
+      // onMouseLeave={() => handleMouseLeave()}
       // onViewportLeave={inViewport}
     >
       <Box as={motion.div} ref={viewRef}
@@ -86,9 +79,11 @@ export function DeepFrame({
           position: 'relative',
           borderRadius: '1.375rem',
           overflow: 'hidden',
+          // rotateX: rotateX,
+          // rotateY: rotateY,
         }}
-        rotateX={rotateX}
-        rotateY={rotateY}
+        // rotateX={rotateX}
+        // rotateY={rotateY}
         variants={variants}
         // variants={isInView && variants}
         animate="start"

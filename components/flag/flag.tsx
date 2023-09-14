@@ -1,101 +1,262 @@
-import { motion, useAnimation, useInView, useSpring, useTransform } from 'framer-motion';
-import React, { useRef, useState } from 'react';
-import { useDebounceCallback } from '@react-hook/debounce';
-import { Box } from '@chakra-ui/react';
+import { Box, Text } from '@chakra-ui/react';
+import { 
+  AnimatePresence, 
+  motion, 
+  // useAnimate, 
+  useAnimation, 
+  useInView, 
+  useIsPresent} from 'framer-motion';
+import { useEffect, useRef, useState } from 'react';
 
-export function DeepFrame({
+
+const variantTitleSide = {  
+  show: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      type: 'spring'
+    }
+  },
+  hide: {
+    opacity: 0,
+    scale: 0.3,
+    transition: {
+      type: 'spring'
+    }
+  }
+}
+
+const variantDescSide = { 
+  show: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      type: 'spring'
+    }
+  },
+  hide: {
+    opacity: 0,
+    scale: 0.3,
+    transition: {
+      type: 'spring'
+    }
+  }
+}
+
+export function DeepFlag({
   blockWidth = 300,
   blockHeight = 300,
   onTapButton,
+  subtitle,
+  title,
+  description,
   ...props
 }:{
   blockWidth?: number;
   blockHeight?: number;
   onTapButton?: () => any;
+  subtitle: string;
+  title: string;
+  description: string;
   [key:string]: any;
-}) {
+  }) {
+  const [revert, setRevert] = useState(false);
   const [current, setCurrent] = useState(0);
   const ref = useRef<any>();
   const viewRef = useRef<any>();
   const controls = useAnimation();
-  
-  const areaWidth = blockWidth * 1.25;
-  const areaHeight = blockHeight * 1.25;
-  const startX = areaWidth / 2;
-  const startY = areaHeight / 2;
-  
-  const x = useSpring(startX, { mass: 0.5, bounce: 0.25, stiffness: 200, damping: 100 });
-  const y = useSpring(startY, { mass: 0.5, bounce: 0.25, stiffness: 200, damping: 100 });
-  
-  
-  const rotateX = useTransform(y, [0, areaWidth], [15, -15])
-  const rotateY = useTransform(x, [0, areaHeight], [-15, 15])
-  
-  function handleMouseMove(event) {
-    const rect = event.currentTarget.getBoundingClientRect();
-    x.set(event.clientX - rect.left);
-    y.set(event.clientY - rect.top);
-    if (current == 1) {
-      x.set(startY);
-      y.set(startY);
+
+  const isPresent = useIsPresent();
+  const animation1 = useAnimation();
+  const animation2 = useAnimation();
+
+  useEffect(() => {
+    if (revert === true) {
+      animation1.start('show');
+      animation2.start('hide');
+    } else {
+      animation1.start('hide');
+      animation2.start('show');
     }
-  }
-  
-  function handleMouseLeave() {
-    x.set(startY);
-    y.set(startY);
-  }
-  
+  }, [revert, animation1, animation2]);
+
+  const isInView = useInView(viewRef);
   const variants = {
     start: { opacity: [0, 0.5, 1], scale: [0.3, 0.65, 1], borderRadius: "1.375rem" },
-    hoverState: { borderRadius: current == 0 ? "9.375rem" : '1.375rem' },
-    tapState: { scale: "1.1", borderRadius: '1.375rem'  },
+    // hoverState: { borderRadius: current == 0 ? "9.375rem" : '1.375rem' },
+    // tapState: { scale: "1.1", borderRadius: '1.375rem'  },
   };
+  // if (revert === true && isPresent) {
+  //   const enterAnimation = async () => {
+  //     await animateDesc(scopeDesc.current, { 
+  //       opacity: 1, 
+  //       scale: 1,
+  //       transition: {
+  //         type: 'spring'
+  //       }
+  //     });
+  //     await animate(scope.current, { 
+  //       opacity: 0, 
+  //       scale: 0.3,
+  //       transition: {
+  //         type: 'spring'
+  //       }
+  //     })
+  //   }
+  //   enterAnimation();
+  // } else {
+  //   const exitAnimation = async () => {
+  //     await animateDesc(scopeDesc.current, { 
+  //       opacity: 0, 
+  //       scale: 0.3,
+  //       transition: {
+  //         type: 'spring'
+  //       }
+  //     });
+  //     await animate(scope.current, { 
+  //       opacity: 1, 
+  //       scale: 1,
+  //       transition: {
+  //         type: 'spring'
+  //       }
+  //     })
+  //   }
+  //   exitAnimation();  
+  // }
 
-  const inViewport = useDebounceCallback(() => {
-    setCurrent(0);
-  }, 2000);
-  
-  const isInView = useInView(viewRef);
-
-  return (<Box as={motion.div}
-        ref={ref}
+  return (<Box>
+    <Box 
+      backgroundImage='url(/images/flag.svg)' 
+      w={blockWidth} 
+      h={blockHeight} 
+      position='absolute' 
+      top={0} left={0} 
+    />
+    <Box
+      // as={motion.div} 
+        // ref={viewRef}
         sx={{
-          width: 450,
-          height: 450,
-          display: "flex",
-          placeItems: "center",
-          placeContent: "center",
-          perspective: 450,
+          width: blockWidth,
+          height: blockHeight,
+          position: 'relative',
+          borderRadius: '1.375rem',
           overflow: 'hidden',
+          bg: 'backgroundModal',
+          p: '3rem 4rem',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          boxShadow: '0 4px 4px 0 rgba(0, 0, 0, 25%)'
         }}
-        onMouseMove={handleMouseMove}
-        onMouseLeave={() => handleMouseLeave()}
-        onViewportLeave={inViewport}
+        // variants={isInView && variants}
+        // animate="start"
+        // whileHover="hoverState"
+        // whileTap="tapState"
+        // onTap={() => setCurrent(1)}
       >
-        <Box as={motion.div} ref={viewRef}
-          sx={{
-            width: blockWidth,
-            height: blockHeight,
-            position: 'relative',
-            borderRadius: '1.375rem',
-            overflow: 'hidden',
-          }}
-          rotateX={rotateX}
-          rotateY={rotateY}
-          variants={isInView && variants}
-          animate="start"
-          whileHover="hoverState"
-          whileTap="tapState"
-          onTap={() => setCurrent(1)}
-          // @ts-ignore
-          transition={{
-            type: "spring", mass: 0.5, bounce: 0.25, stiffness: 200, damping: 100
-          }}
-        >
-        
-        abc
+        <AnimatePresence>
+          <Box 
+            as={motion.div}
+          // ref={scopeDesc}
+            animate={animation2}
+            variants={variantDescSide}
+            onTap={() => {
+              setRevert(!revert);
+              console.log('revert_anime2', revert);
+            }}
+          >
+            <Text align='center' textStyle='body'>{description}</Text>
+          </Box>
+        </AnimatePresence>
+        <AnimatePresence>
+          <Box 
+            as={motion.div}
+            // ref={scope} 
+            animate={animation1}
+            variants={variantTitleSide}
+            onTap={() => {
+              setRevert(!revert);
+              console.log('revert_anime1', revert);
+            }}
+            sx={{
+              display: 'flex',
+              flexDirection: 'column'
+            }}
+          >
+            <Text align='center' textStyle='quoteTitle'>{title}</Text>
+            <Text align='center' textStyle='quoteSubtitle'>{subtitle}</Text>
+          </Box>
+        </AnimatePresence>
       </Box>
     </Box>
   )
 }
+  // return (<Box as={motion.div}
+  //       ref={ref}
+  //       sx={{
+  //         width: 450,
+  //         height: 450,
+  //         display: "flex",
+  //         placeItems: "center",
+  //         placeContent: "center",
+  //         perspective: 450,
+  //         overflow: 'hidden',
+  //       }}
+  //       onMouseMove={handleMouseMove}
+  //       onMouseLeave={() => handleMouseLeave()}
+  //       onViewportLeave={inViewport}
+  //     >
+  //       <Box as={motion.div} ref={viewRef}
+  //         sx={{
+  //           width: blockWidth,
+  //           height: blockHeight,
+  //           position: 'relative',
+  //           borderRadius: '1.375rem',
+  //           overflow: 'hidden',
+  //         }}
+  //         rotateX={rotateX}
+  //         rotateY={rotateY}
+  //         variants={isInView && variants}
+  //         animate="start"
+  //         whileHover="hoverState"
+  //         whileTap="tapState"
+  //         onTap={() => setCurrent(1)}
+  //         // @ts-ignore
+  //         transition={{
+  //           type: "spring", mass: 0.5, bounce: 0.25, stiffness: 200, damping: 100
+  //         }}
+  //       >
+        
+  //       abc
+  //     </Box>
+  //   </Box>
+
+  // <AnimatePresence>
+  //         {revert === true
+  //         ?  <Box 
+  //             as={motion.div}
+  //           // ref={scopeDesc}
+  //             animate={animation2}
+  //             variants={variantDescSide}
+  //             onTap={() => setRevert(!revert)}
+  //           >
+  //             <Text align='center' textStyle='body'>{description}</Text>
+  //           </Box>
+        
+  //         :  <Box 
+  //             as={motion.div}
+  //             // ref={scope} 
+  //             animate={animation1}
+  //             variants={variantTitleSide}
+  //             onTap={() => setRevert(!revert)}
+  //             sx={{
+  //               display: 'flex',
+  //               flexDirection: 'column'
+  //             }}
+  //           >
+  //             <Text align='center' textStyle='quoteTitle'>{title}</Text>
+  //             <Text align='center' textStyle='quoteSubtitle'>{subtitle}</Text>
+  //           </Box>
+  //         }
+  //       </AnimatePresence>
