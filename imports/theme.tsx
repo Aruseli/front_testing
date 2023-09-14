@@ -17,28 +17,12 @@ const themeChakra = extendTheme({
     colors: {
       error: 'red.500',
       text: {
-        default: 'grayText',
-        _dark: 'whiteText',
+        default: '#060608',
+        _dark: 'white',
       },
-      borderColor: {
-        default: '#d2cece',
-        _dark: '#718096',
-      },
-      backgroundModal: {
-        default: 'blue.50',
-        _dark: 'blue.900',
-      },
-      colorModeButton: {
-        default: 'blue.900',
-        _dark: 'blue.50',
-      },
-      buttonBackgroundModal: {
-        default: 'gray.10',
-        _dark: 'cyDark',
-      },
-      buttonInactive: {
-        default: 'gray.10',
-        _dark: 'blue.900',
+      flagBackground: {
+        default: 'white',
+        _dark: 'darkBg',
       },
       switchOn: {
         default: 'primary',
@@ -49,57 +33,14 @@ const themeChakra = extendTheme({
         _dark: 'blue.200',
       },
       switchThumb: {
-        default: 'whiteText',
+        default: 'white',
         _dark: 'cyDark',
       },
       switchModeBorder: {
         default: 'blue.500',
         _dark: 'blue.200',
       },
-      editorPreviewBackground: {
-        default: 'whiteBg',
-        _dark: 'blue.900',
-      },
-      editorPreviewBackgroundGrid: {
-        default: '#e5eefc',
-        _dark: '#404040',
-      },
-      whiteGray: {
-        default: 'whiteText',
-        _dark: 'grayText',
-      },
-      colorOutline: {
-        default: '#edf2f7',
-        _dark: '#1a202c'
-      },
-      bgColor: {
-        default: '#edf2f7',
-        _dark: 'gray.900',
-      },
-      bgLanguagesButton: {
-        default: 'gray.200',
-        _dark: 'gray.700',
-      },
-      lightDark: {
-        default: 'white',
-        _dark: 'gray.700'
-      },
-      handlersInput: {
-        default: 'white',
-        _dark: 'gray.900'
-      },
-      borderInputMessage: {
-        default: '#e6e6e6',
-        _dark: '#29303b'
-      },
-      sendMessagePlane: {
-        default: 'gray.700',
-        _dark: 'whiteText',
-      },
-      siteBg: {
-        default: 'whiteBg',
-        _dark: 'gray.700',
-      }
+     
     },
   },
   styles: {
@@ -110,15 +51,41 @@ const themeChakra = extendTheme({
       },
     }),
   },
+  fonts: {
+    body: "'Zen Kaku Gothic Antique', sans-serif",
+    heading: "'Zen Kaku Gothic Antique', sans-serif",
+  },
+  fontSizes: {
+    '2xs': "calc(0.55rem + 0.5vmax)",
+    xs: "calc(0.75rem + 0.5vmax)",
+    sm: 'calc(0.95rem + 0.5vmax)', //"0.875rem",
+    md: "calc(1rem + 0.5vmax)",
+    lg: "calc(1.125rem + 0.5vmax)",
+    xl: "calc(1.2rem + 0.5vmax)",
+    "2xl": "calc(1.5rem + 0.5vmax)",
+    "3xl": "calc(1.875rem + 0.5vmax)",
+    "4xl": "calc(2.3rem + 0.5vmax)",
+    "5xl": "calc(3rem + 0.5vmax)",
+    "6xl": "calc(3.25rem + 0.5vmax)",
+    "7xl": "4.5rem",
+    "8xl": "6rem",
+    "9xl": "8rem",
+  },
+  fontWeights: {
+    light: 300,
+    regular: 400,
+    medium: 500,
+    bold: 700,
+    black: 900,
+  },
   colors: {
-    primary: '#0080ff',
+    darkBg: '#222222',
     cyDark: '#141214',
     blue: {
       900: '#19202B',
     },
     grayText: '#3a3a3a',
-    whiteText: '#ebf8ff',
-    whiteBg: '#fcfcfc',
+    white: '#ebf8ff',
     gray: {
       10: '#eeeeee',
       900: '#111720',
@@ -139,7 +106,7 @@ const themeChakra = extendTheme({
     },
     h2: {
       fontSize: '2xl',
-      fontWeight: 'semibold',
+      fontWeight: 'bold',
       textTransform: 'uppercase',
     },
     h3: {
@@ -156,13 +123,13 @@ const themeChakra = extendTheme({
       color: 'text',
     },
     quoteTitle: {
-      fontSize: 'sm',
+      fontSize: 'xs',
       lineHeight: '1.5',
       fontWeight: 'medium',
       color: 'text',
     },
     quoteSubtitle: {
-      fontSize: 'sm',
+      fontSize: 'xs',
       lineHeight: '1.5',
       fontWeight: 'regular',
       color: 'text',
