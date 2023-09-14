@@ -7,9 +7,9 @@ export default function Document() {
   return (
     <Html>
       <Head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
-        <link href="https://fonts.googleapis.com/css2?family=Ysabeau+SC:wght@1;100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" /> 
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+Antique:wght@300;400;500;700;900&display=swap" rel="stylesheet" />
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="apple-touch-icon" href="/apple-icon.png" type="image/png" />
         <link rel="android-chrome-192x192" href="/android-chrome-192x192.png" type="image/png" sizes='192x192' />
