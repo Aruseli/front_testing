@@ -8,7 +8,14 @@ import { DeepFrameMouseTracking } from './flag/frame-mouse-tracking';
 export function Page() {
   const [page, setPage] = useQueryStore('page', '/');
 
-  return (<Box w='100vw' h='100vh' position='relative' display='grid' gridTemplateColumns='repeat(auto-fit, minmax(300px, 1fr))' gap='2rem'>
+  return (<Box
+      w='100vw'
+      h='100vh'
+      position='relative'
+      display='grid'
+      gridTemplateColumns='repeat(auto-fit, minmax(300px, 450px))'
+      gap='2rem'
+    >
       <Switch />
     {/* <PageContent /> */}
       <DeepFrameMouseTracking>
