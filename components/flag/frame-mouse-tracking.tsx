@@ -1,6 +1,6 @@
 import { Box, useColorMode } from '@chakra-ui/react';
 import { useDebounceCallback } from '@react-hook/debounce';
-import { motion, useInView, useSpring, useTransform } from 'framer-motion';
+import { motion, useInView, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import React, { useRef, useState } from 'react';
 
 export const DeepFrameMouseTracking = React.memo<any>(({
@@ -16,31 +16,30 @@ export const DeepFrameMouseTracking = React.memo<any>(({
   children: any;
   [key:string]: any;
 }) => {
-  const [current, setCurrent] = useState(0);
+  const [current, setCurrent] = useState(1);
   const ref = useRef<any>();
   const viewRef = useRef<any>();
-  
-  const areaWidth = blockWidth * 1.25; //23.75 = 142.5
-  const areaHeight = blockHeight * 1.25;
-  const startX = blockWidth / 2;
-  const startY = blockHeight / 2;
-  
-  const x = useSpring(startX, { mass: 0.5, bounce: 0.25, stiffness: 200, damping: 100 });
-  const y = useSpring(startY, { mass: 0.5, bounce: 0.25, stiffness: 200, damping: 100 });
-  
-  const rotateX = useTransform(y, [0, areaWidth], [15, -15])
-  const rotateY = useTransform(x, [0, areaHeight], [-15, 15])
-  
-  function handleMouseMove(event) {
-    const rect = event.currentTarget.getBoundingClientRect();
-    x.set(event.clientX - rect.left);
-    y.set(event.clientY - rect.top);
+    
+  const x = useMotionValue(200);
+  const y = useMotionValue(200);
+  const springX = useSpring(x, { mass: 0.5, bounce: 0.25, stiffness: 200, damping: 100 });
+  const springY = useSpring(y, { mass: 0.5, bounce: 0.25, stiffness: 200, damping: 100 });
+    
+  const rotateX = useTransform(springY, [0, 400], [25, -25]);
+  const rotateY = useTransform(springX, [0, 400], [-25, 25]);
+
+  function handleMouse(event) {
+      const rect = event.currentTarget.getBoundingClientRect();
+
+      x.set(event.clientX - rect.left);
+      y.set(event.clientY - rect.top);
   }
-  
+
   function handleMouseLeave() {
-    x.set(startY);
-    y.set(startY);
+    springX.set(200);
+    springY.set(200);
   }
+
   const { colorMode, toggleColorMode } = useColorMode();
   
   const variants = {
@@ -59,22 +58,22 @@ export const DeepFrameMouseTracking = React.memo<any>(({
   return (<motion.div
       ref={ref}
       style={{
-        width: blockWidth * 1.5,
-        height: blockHeight * 1.5,
+        width: 450,
+        height: 450,
         display: "flex",
         placeItems: "center",
         placeContent: "center",
-        perspective: blockWidth * 1.5,
+        perspective: 450,
         overflow: 'hidden',
       }}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={() => handleMouseLeave()}
+      onMouseMove={handleMouse}
+      onMouseLeave={handleMouseLeave}
       onViewportLeave={inViewport}
     >
       <motion.div ref={viewRef}
         style={{
-          width: blockWidth,
-          height: blockHeight,
+          width: 300,
+          height: 300,
           rotateX: rotateX,
           rotateY: rotateY,
           position: 'relative',
@@ -85,9 +84,8 @@ export const DeepFrameMouseTracking = React.memo<any>(({
         animate="start"
         whileHover="hoverState"
         whileTap="tapState"
-        onTap={() => setCurrent(1)}
         transition={{
-          type: "spring", mass: 0.5, bounce: 0.25, stiffness: 200, damping: 100
+          // type: "spring", mass: 0.5, bounce: 0.25, stiffness: 200, damping: 100
         }}
       >
         <Box bg='flagBackground' w='100%' h='100%'>

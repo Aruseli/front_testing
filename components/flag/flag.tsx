@@ -77,11 +77,8 @@ export function DeepFlag({
   description: string;
   [key:string]: any;
   }) {
-  const [revert, setRevert] = useState(false);
-  const [current, setCurrent] = useState(0);
-  const ref = useRef<any>();
+  const [revert, setRevert] = useState(true);
   const viewRef = useRef<any>();
-  const controls = useAnimation();
 
   const isPresent = useIsPresent();
   const animation1 = useAnimation();
@@ -121,7 +118,10 @@ export function DeepFlag({
           exit='hide'
           initial='hide'
           variants={variantDescSide}
-          onTap={() => setRevert(!revert)}
+          onTap={() => {
+            setRevert(!revert);
+            console.log('tap', revert);
+          }}
           sx={{
             alignItems: 'center',
             justifyContent: 'center', 
