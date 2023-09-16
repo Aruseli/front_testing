@@ -100,8 +100,10 @@ export function DeepFlag({
       // as={motion.div} 
       // ref={viewRef}
       sx={{
-        width: `${blockWidth}rem`,
-        height: `${blockHeight}rem`,
+        // width: `${blockWidth}rem`,
+        // height: `${blockHeight}rem`,
+        width: 300,
+        height: 300,
         position: 'relative',
         borderRadius: '1.375rem',
         overflow: 'hidden',
@@ -127,7 +129,7 @@ export function DeepFlag({
             justifyContent: 'center', 
           }}
         >
-          <Text align='center' textStyle='quoteSubtitle'>{description}</Text>
+          <Text align='center' textStyle='Regular20'>{description}</Text>
         </Box>
       </AnimatePresence>
       <AnimatePresence>
@@ -149,8 +151,8 @@ export function DeepFlag({
             }
           }}
       >
-          <Text align='center' textStyle='quoteTitle'>{title}</Text>
-          <Text align='center' textStyle='quoteSubtitle'>{subtitle}</Text>
+          <Text align='center' textStyle='Medium20'>{title}</Text>
+          <Text align='center' textStyle='Regular20'>{subtitle}</Text>
           {/* image here */}
           <Box 
             backgroundImage='url(/images/flag.svg)' 

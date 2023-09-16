@@ -77,7 +77,7 @@ export const DeepFrameMouseTracking = React.memo<any>(({
           rotateX: rotateX,
           rotateY: rotateY,
           position: 'relative',
-          borderRadius: '1.375rem',
+          borderRadius: '0.3rem',
           overflow: 'hidden',
         }}
         variants={isInView && variants}

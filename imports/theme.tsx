@@ -56,7 +56,7 @@ const themeChakra = extendTheme({
     heading: "'Zen Kaku Gothic Antique', sans-serif",
   },
   fontSizes: {
-    '2xs': "calc(0.55rem + 0.5vmax)",
+    '2xs': "calc(0.5rem + 0.5vmax)",
     xs: "calc(0.75rem + 0.5vmax)",
     sm: 'calc(0.95rem + 0.5vmax)', //"0.875rem",
     md: "calc(1rem + 0.5vmax)",
@@ -122,16 +122,22 @@ const themeChakra = extendTheme({
       fontSize: 'md',
       color: 'text',
     },
-    quoteTitle: {
+    Medium20: {
       fontSize: 'xs',
       lineHeight: '1.5',
       fontWeight: 'medium',
       color: 'text',
     },
-    quoteSubtitle: {
+    Regular20: {
       fontSize: 'xs',
       lineHeight: '1.5',
       fontWeight: 'regular',
+      color: 'text',
+    },
+    Medium16: {
+      fontSize: '2xs',
+      lineHeight: '1.2',
+      fontWeight: 'medium',
       color: 'text',
     },
     body: {
