@@ -40,7 +40,14 @@ const themeChakra = extendTheme({
         default: 'blue.500',
         _dark: 'blue.200',
       },
-     
+      boxShadowMode: {
+        default: '0 0px 5px 2px #0000001a',
+        _dark: '0 0px 5px 2px  #00000026',
+      },
+      podcastBg: {
+        default: '#3BBEFF',
+        _dark: '#004D74',
+      },
     },
   },
   styles: {
@@ -122,9 +129,39 @@ const themeChakra = extendTheme({
       fontSize: 'md',
       color: 'text',
     },
+    Medium32: {
+      fontSize: 'lg',
+      lineHeight: '1.2',
+      fontWeight: 'medium',
+      color: 'text',
+    },
+    Medium28: {
+      fontSize: 'md',
+      lineHeight: '1.2',
+      fontWeight: 'medium',
+      color: 'text',
+    },
+    Medium22: {
+      fontSize: 'sm',
+      lineHeight: '1.2',
+      fontWeight: 'medium',
+      color: 'text',
+    },
     Medium20: {
       fontSize: 'xs',
-      lineHeight: '1.5',
+      lineHeight: '1.2',
+      fontWeight: 'medium',
+      color: 'text',
+    },
+    Medium16: {
+      fontSize: '2xs',
+      lineHeight: '1.2',
+      fontWeight: 'medium',
+      color: 'text',
+    },
+    Regular28: {
+      fontSize: 'md',
+      lineHeight: '1.2',
       fontWeight: 'medium',
       color: 'text',
     },
@@ -132,12 +169,6 @@ const themeChakra = extendTheme({
       fontSize: 'xs',
       lineHeight: '1.5',
       fontWeight: 'regular',
-      color: 'text',
-    },
-    Medium16: {
-      fontSize: '2xs',
-      lineHeight: '1.2',
-      fontWeight: 'medium',
       color: 'text',
     },
     body: {
@@ -148,6 +179,7 @@ const themeChakra = extendTheme({
     }
   },
   components: {
+    
     Tabs: {
       variants: {
         'enclosed': {
