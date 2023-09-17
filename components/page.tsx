@@ -8,6 +8,8 @@ import { DeepFrameMouseShift } from './flag/frame-mouse-shift';
 import { CursorCircle, CursorCoord } from './flag/cursor';
 import { Article } from './article';
 import { Thesis } from './thesis';
+import { ThesisDescription } from './thesis-description';
+import { Podcast } from './podcast/podcast';
 
 export function Page() {
   const [page, setPage] = useQueryStore('page', '/');
@@ -16,9 +18,12 @@ export function Page() {
       w='100vw'
       h='100vh'
       position='relative'
-      display='grid'
-      gridTemplateColumns='repeat(auto-fit, minmax(300px, 450px))'
+      display='flex'
+      // gridTemplateColumns='repeat(auto-fit, minmax(300px, 25vw))'
+      flexWrap='wrap'
       gap='2rem'
+      boxSizing='border-box'
+      p='1.5rem'
       alignItems='center'
       justifyContent='center'
       justifyItems='center'
@@ -39,11 +44,27 @@ export function Page() {
           description='Blurring the line between your desktop and your mind-space'
         />
       </DeepFrameMouseShift>
-      <CursorCircle />
       <CursorCoord />
       <Article>123</Article>
-      <Thesis />
+      <Box
+        sx={{
+          '&>*:nth-of-type(1)': {
+            mb: '2rem'
+          }
+        }}
+      >
+        <Thesis />
+        <Box display='flex' flexFlow='column'>
+          <ThesisDescription />
+        </Box>
+      </Box>
+      <Box width='30rem'>
+        <Podcast />
+      </Box>
       <Text color='cyDark'>123</Text>
+      <Box width='21rem' height='21rem'>
+        <CursorCircle />
+      </Box>
       {/* <Footer setPage={setPage} page={page} /> */}
     </Box>
   );
