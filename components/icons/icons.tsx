@@ -52,8 +52,18 @@ export function ViewIcon({
   )
 }
 
-export function IconProvider({icon, color}:{icon?:any; color?: string;}) {
-  return (<IconContext.Provider value={{ color: color }}>
+export function IconProvider({
+  icon, 
+  color, 
+  size = '1em',
+  ...props
+}:{
+  icon?:any; 
+  color?: string;
+  size?: string;
+  [key:string]: any;
+}) {
+  return (<IconContext.Provider value={{ color: color, size: size, ...props }}>
       {icon}
     </IconContext.Provider>
   )
