@@ -2,6 +2,7 @@ import { Box, useColorMode } from '@chakra-ui/react';
 import { useDebounceCallback } from '@react-hook/debounce';
 import { motion, useInView, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import React, { useRef, useState } from 'react';
+import { BoxShadow } from './box-shadow';
 
 export const DeepFrameMouseTracking = React.memo<any>(({
   blockWidth = 300,
@@ -40,7 +41,7 @@ export const DeepFrameMouseTracking = React.memo<any>(({
     springY.set(200);
   }
 
-  const { colorMode, toggleColorMode } = useColorMode();
+  const { colorMode } = useColorMode();
   
   const variants = {
     start: { opacity: [0, 0.5, 1], scale: [0.3, 0.65, 1] },
@@ -70,28 +71,16 @@ export const DeepFrameMouseTracking = React.memo<any>(({
       onMouseLeave={handleMouseLeave}
       onViewportLeave={inViewport}
     >
-      <motion.div ref={viewRef}
-        style={{
-          width: 300,
-          height: 300,
+      <BoxShadow
+        styles={{
           rotateX: rotateX,
           rotateY: rotateY,
-          position: 'relative',
-          borderRadius: '0.3rem',
-          overflow: 'hidden',
-        }}
-        variants={isInView && variants}
-        animate="start"
-        whileHover="hoverState"
-        whileTap="tapState"
-        transition={{
-          // type: "spring", mass: 0.5, bounce: 0.25, stiffness: 200, damping: 100
         }}
       >
         <Box bg='flagBackground' w='100%' h='100%'>
           {children}
         </Box>
-      </motion.div>
+      </BoxShadow>
     </motion.div>
   )
 })

@@ -1,7 +1,8 @@
 import { Box, Img, useColorMode } from '@chakra-ui/react';
 import { useDebounceCallback } from '@react-hook/debounce';
 import { motion, useInView, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import { BoxShadow } from './box-shadow';
 
 
 const transition = {
@@ -33,8 +34,8 @@ export const DeepFrameMouseShift = React.memo<any>(({
   const shiftY = useTransform(springX, [0, 300], [-45, 45]);
 
   function handleMouse(event) {
-    // const rect = event.currentTarget.getBoundingClientRect();
-    const rect = viewRef.current?.getBoundingClientRect();
+    const rect = event.currentTarget.getBoundingClientRect();
+    // const rect = viewRef.current?.getBoundingClientRect();
     console.log('rect', rect)
     x.set(event.clientX - rect.left);
     y.set(event.clientY - rect.top);
@@ -51,6 +52,15 @@ export const DeepFrameMouseShift = React.memo<any>(({
     console.log('shiftY', shiftY)
     console.log('mouse leave')
   }
+
+  useEffect(() => {
+    const onMouse = () => {console.log('viewRef', viewRef)}
+    if (viewRef.current) {
+      viewRef.current.addEventListener('mousemove', handleMouse);
+      viewRef.current.addEventListener('mouseleave', handleMouseLeave);
+      viewRef.current.addEventListener('mouseenter', onMouse);
+    }
+  }, []);
 
   const { colorMode } = useColorMode();
   const variants = {
@@ -70,40 +80,32 @@ export const DeepFrameMouseShift = React.memo<any>(({
         placeContent: "center",
         overflow: 'hidden',
       }}
-      // onMouseMove={handleMouse}
-      // onMouseLeave={handleMouseLeave}
+      onMouseMove={handleMouse}
+      onMouseLeave={handleMouseLeave}
       >
       <Box
         sx={{
           width: 300,
           height: 300,
           position: 'relative',
-          borderRadius: '0.3rem',
+          borderRadius: '0.4rem',
         }}
       >
-        <Img src='/gradient.webp' w='300px' h='300px' sx={{position: 'absolute'}} /> 
-        <motion.div ref={viewRef}
-          style={{
-            width: 300,
-            height: 300,
+        <Box sx={{overflow: 'hidden', borderRadius: '0.3rem'}}>
+          <Img src='/gradient.webp' w='calc(100% - 1px)' h='calc(100% - 1px)' sx={{position: 'absolute'}} /> 
+        </Box>
+        <BoxShadow
+          styles={{ 
             x: shiftX,
             y: shiftY,
-            position: 'absolute',
-            borderRadius: '0.3rem',
-            overflow: 'hidden',
           }}
-          onMouseMove={handleMouse}
-          onMouseLeave={handleMouseLeave}
-          variants={variants}
-          animate="start"
-          whileHover="hoverState"
-          whileTap="tapState"
+          position='absolute'
+          onMouseRef={viewRef}
         >
           <Box bg='flagBackground' w='100%' h='100%'>
             {children}
           </Box>
-        </motion.div>
-      
+        </BoxShadow>
       </Box>
     </motion.div>
   )

@@ -5,6 +5,14 @@ import useMouse from "@react-hook/mouse-position";
 import { motion, useTransform } from "framer-motion";
 import { Box, Text } from "@chakra-ui/react";
 
+
+
+const spring = {
+  type: "spring",
+  stiffness: 500,
+  damping: 28
+};
+
 export function CursorCircle() {
   const [cursorText, setCursorText] = useState("");
   const [cursorVariant, setCursorVariant] = useState("default");
@@ -63,12 +71,6 @@ export function CursorCircle() {
     }
   };
 
-  const spring = {
-    type: "spring",
-    stiffness: 500,
-    damping: 28
-  };
-
   function projectEnter(event) {
     setCursorText("View");
     setCursorVariant("project");
@@ -89,8 +91,7 @@ export function CursorCircle() {
     setCursorVariant("default");
   }
 
-  return (
-    <Box position='relative' w='100%' h='100%'>
+  return (<Box position='relative' w='100%' h='100%'>
       <Box ref={ref}
         sx={{
           display: 'flex',
