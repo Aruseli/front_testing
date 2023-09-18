@@ -62,6 +62,7 @@ export function Page() {
         <Podcast />
       </Box>
       <Text color='cyDark'>123</Text>
+      <Text color='cyDark'>123</Text>
       <Box width='21rem' height='21rem'>
         <CursorCircle />
       </Box>
