@@ -64,6 +64,7 @@ export function Page() {
       <Text color='cyDark'>123</Text>
       test ssh
       test gpg
+      Creates a signed commit
       <Box width='21rem' height='21rem'>
         <CursorCircle />
       </Box>
