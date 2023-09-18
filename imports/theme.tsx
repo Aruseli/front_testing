@@ -45,7 +45,7 @@ const themeChakra = extendTheme({
         _dark: '0 0px 5px 2px  #00000026',
       },
       podcastBg: {
-        default: '#3BBEFF',
+        default: '#D9D9D9',
         _dark: '#004D74',
       },
     },
