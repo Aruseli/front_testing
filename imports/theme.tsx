@@ -67,8 +67,8 @@ const themeChakra = extendTheme({
     xs: "calc(0.75rem + 0.5vmax)",
     sm: 'calc(0.95rem + 0.5vmax)', //"0.875rem",
     md: "calc(1rem + 0.5vmax)",
-    lg: "calc(1.125rem + 0.5vmax)",
-    xl: "calc(1.2rem + 0.5vmax)",
+    lg: "calc(1.5rem + 0.5vmax)",
+    xl: "calc(1.35rem + 0.8vmax)",
     "2xl": "calc(1.5rem + 0.5vmax)",
     "3xl": "calc(1.875rem + 0.5vmax)",
     "4xl": "calc(2.3rem + 0.5vmax)",
@@ -129,6 +129,12 @@ const themeChakra = extendTheme({
       fontSize: 'md',
       color: 'text',
     },
+    Medium36: {
+      fontSize: 'xl',
+      lineHeight: '1.2',
+      fontWeight: 'medium',
+      color: 'text',
+    },
     Medium32: {
       fontSize: 'lg',
       lineHeight: '1.2',
@@ -159,10 +165,16 @@ const themeChakra = extendTheme({
       fontWeight: 'medium',
       color: 'text',
     },
+    Regular30: {
+      fontSize: 'lg',
+      lineHeight: '1.2',
+      fontWeight: 'regular',
+      color: 'text',
+    },
     Regular28: {
       fontSize: 'md',
       lineHeight: '1.2',
-      fontWeight: 'medium',
+      fontWeight: 'regular',
       color: 'text',
     },
     Regular20: {

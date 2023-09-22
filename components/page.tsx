@@ -10,6 +10,7 @@ import { Article } from './article';
 import { Thesis } from './thesis';
 import { ThesisDescription } from './thesis-description';
 import { Podcast } from './podcast/podcast';
+import { Member } from './crew/member';
 
 export function Page() {
   const [page, setPage] = useQueryStore('page', '/');
@@ -58,8 +59,11 @@ export function Page() {
           <ThesisDescription />
         </Box>
       </Box>
-      <Box width='30rem'>
+      <Box width='36rem'>
         <Podcast />
+      </Box>
+      <Box width='30rem'>
+        <Member />
       </Box>
       <Text color='cyDark'>123</Text>
       <Box width='21rem' height='21rem'>
