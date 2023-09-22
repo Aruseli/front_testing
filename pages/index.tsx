@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { StrictMode } from 'react';
 import { Page } from '../components/page';
 import { Providers } from '../imports/providers';
 
 
 export default function IndexPage() {
-  return (
-    <Providers>
-      <Page />
-    </Providers>
+  return (<StrictMode>
+      <Providers>
+        <Page />
+      </Providers>
+    </StrictMode>
   );
 }

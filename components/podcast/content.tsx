@@ -19,7 +19,7 @@ export const PodcastMainContent = React.memo<any>(({
 	animateProps?: any;
 	whileHover?: any;
 	whileTap?: any;
-	exit?: any;
+	exit?: 'end' | 'initial';
 	[key:string]: any;
 }) => {
 
@@ -69,7 +69,7 @@ export const PodcastMainContent = React.memo<any>(({
 	)
 })
 
-export const PodcastOpenFrame = React.memo<any>(({
+export function PodcastOpenFrame ({
 	variantsAnimationBlock,
 	children,
 	animate,
@@ -77,7 +77,11 @@ export const PodcastOpenFrame = React.memo<any>(({
 	exit = 'end',
 	height = '15.15rem',
 	bg = 'podcastBg',
+	onTouchStart,
+	onTapStart,
+	onTapCancel,
 	onClick,
+	styles,
 	...props
 }:{
 	variantsAnimationBlock?: any;
@@ -87,9 +91,13 @@ export const PodcastOpenFrame = React.memo<any>(({
 	exit?: any;
 	height?: string;
 	bg?: string;
+	onTouchStart?: (event) => any;
+	onTapStart?: (event, info) => any;
+	onTapCancel?: (event, info) => any;
 	onClick?: () => any;
+	styles?: any;
 	[key:string]: any;
-}) => {
+}) {
 
 	const {colorMode} = useColorMode(); 
 
@@ -106,12 +114,16 @@ export const PodcastOpenFrame = React.memo<any>(({
 				animate={animate}
 				exit={exit}
 				onClick={onClick}
+				onTap={onTapStart}
+				sx={...styles}
+				onTouchStart={onTouchStart}
+				// onTapEnd={onTapCancel}
 			>
 				{children}
 			</Box>
 		</AnimatePresence>
 	)
-})
+}
 
 export const PodcastOpenFrameContent = React.memo<any>(({
 	variantsAnimationContent,
@@ -122,7 +134,10 @@ export const PodcastOpenFrameContent = React.memo<any>(({
 	date = '14.12.21',
 	time = '00:38:55',
 	exit = 'end',
-	onClick,
+	initialText,
+	animateText,
+	variantsText,
+	exitText,
 	...props
 }:{
 	variantsAnimationContent?: any;
@@ -133,7 +148,10 @@ export const PodcastOpenFrameContent = React.memo<any>(({
 	date?: any;
 	time?: any;
 	exit?: string;
-	onClick?: () => any;
+	initialText?: any;
+	animateText?: any;
+	variantsText?: any;
+	exitText?: string;
 	[key:string]: any;
 }) => {
 
@@ -158,12 +176,26 @@ export const PodcastOpenFrameContent = React.memo<any>(({
 					}
 				}}
 			>
-				<Text textStyle='Medium32' alignSelf='center'>{name}</Text>
-				<Text textStyle='Regular28' alignSelf='center'>{profession}</Text>
-				<Box display='flex' flexFlow='row' alignItems='center'>
-					<Text textStyle='Medium28' mr='1rem'>{date}</Text>
-					<Text textStyle='Medium28'>{time}</Text>
-				</Box>
+				<AnimatePresence>
+					<Box
+						as={motion.div}
+						flexFlow='column'
+						display='flex'
+						justifyContent='center'
+						alignItems='flex-start'
+						initial={initialText}
+						animate={animateText}
+						variants={variantsText}
+						exit={exitText}
+					>
+						<Text textStyle='Medium32' alignSelf='center'>{name}</Text>
+						<Text textStyle='Regular28' alignSelf='center'>{profession}</Text>
+						<Box display='flex' flexFlow='row' alignItems='center'>
+							<Text textStyle='Medium28' mr='1rem'>{date}</Text>
+							<Text textStyle='Medium28'>{time}</Text>
+						</Box>
+					</Box>
+				</AnimatePresence>
 			</Box>
 		</AnimatePresence>
 	)
