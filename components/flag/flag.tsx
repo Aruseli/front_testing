@@ -1,4 +1,4 @@
-import { Box, Text } from '@chakra-ui/react';
+import { Box, Img, Text, useColorMode } from '@chakra-ui/react';
 import { 
   AnimatePresence, 
   motion, 
@@ -96,6 +96,8 @@ export function DeepFlag({
 
   const isInView = useInView(viewRef);
 
+  const {colorMode} = useColorMode();
+
   return (<Box
       // as={motion.div} 
       // ref={viewRef}
@@ -119,6 +121,7 @@ export function DeepFlag({
           animate={animation2}
           exit='hide'
           initial='hide'
+          flexFlow='column'
           variants={variantDescSide}
           onTap={() => {
             setRevert(!revert);
@@ -129,7 +132,9 @@ export function DeepFlag({
             justifyContent: 'center', 
           }}
         >
-          <Text align='center' textStyle='Regular20'>{description}</Text>
+          <Text align='center' textStyle='Regular20' mb='1.5rem'>{description}</Text>
+          {colorMode === 'light' ? <Img src='/logo_gold.svg' />
+          : <Img src='/logo_blue.svg' />}
         </Box>
       </AnimatePresence>
       <AnimatePresence>
@@ -155,7 +160,7 @@ export function DeepFlag({
           <Text align='center' textStyle='Regular20'>{subtitle}</Text>
           {/* image here */}
           <Box 
-            backgroundImage='url(/images/flag.svg)' 
+            backgroundImage={'url(/images/flag.svg)'} 
             sx={{
               width: `${blockWidth / 2.5}rem`,
               height: `${blockHeight / 2.5}rem`

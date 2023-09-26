@@ -50,8 +50,8 @@ export function CursorCircle() {
     },
     project: {
       opacity: 1,
-      // backgroundColor: "rgba(255, 255, 255, 0.6)",
-      backgroundColor: "#fff",
+      backgroundColor: "rgba(255, 255, 255, 0.6)",
+      // backgroundColor: "#fff",
       color: "#000",
       height: 80,
       width: 80,

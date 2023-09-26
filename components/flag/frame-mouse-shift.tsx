@@ -37,28 +37,28 @@ export const DeepFrameMouseShift = React.memo<any>(({
     const rect = event.currentTarget.getBoundingClientRect();
     // const rect = viewRef.current?.getBoundingClientRect();
     console.log('rect', rect)
-    x.set(event.clientX - rect.left);
-    y.set(event.clientY - rect.top);
-    console.log('x', x)
-    console.log('y', y)
+    x.set(event.clientX - (rect.left / 2));
+    y.set(event.clientY - (rect.top / 2));
+    console.log('rect/2', rect)
     console.log('event.clientX', event.clientX) //mouse position x
     console.log('event.clientY', event.clientY) //mouse position y
+    console.log('rect.left', rect.left);
+    console.log('rect.right', rect.right);
   }
 
-  function handleMouseLeave() {
-    shiftX.set(150);
-    shiftY.set(150);
+  function handleMouseLeave({x, y}) {
+    shiftX.set(x);
+    shiftY.set(y);
     console.log('shiftX', shiftX)
     console.log('shiftY', shiftY)
     console.log('mouse leave')
   }
 
   useEffect(() => {
-    const onMouse = () => {console.log('viewRef', viewRef)}
     if (viewRef.current) {
       viewRef.current.addEventListener('mousemove', handleMouse);
       viewRef.current.addEventListener('mouseleave', handleMouseLeave);
-      viewRef.current.addEventListener('mouseenter', onMouse);
+      // viewRef.current.addEventListener('mouseenter', onMouse);
     }
   }, []);
 
@@ -80,8 +80,8 @@ export const DeepFrameMouseShift = React.memo<any>(({
         placeContent: "center",
         overflow: 'hidden',
       }}
-      onMouseMove={handleMouse}
-      onMouseLeave={handleMouseLeave}
+      onMouseMove={() => handleMouse(event)}
+      onMouseLeave={() => handleMouseLeave({x, y})}
       >
       <Box
         sx={{
@@ -91,13 +91,25 @@ export const DeepFrameMouseShift = React.memo<any>(({
           borderRadius: '0.4rem',
         }}
       >
-        <Box sx={{overflow: 'hidden', borderRadius: '0.3rem'}}>
-          <Img src='/gradient.webp' w='calc(100% - 1px)' h='calc(100% - 1px)' sx={{position: 'absolute'}} /> 
+        <Box sx={{
+          position: 'relative',
+          height: '100%',
+          overflow: 'hidden', 
+          borderRadius: '0.3rem', 
+          borderImageWidth: '0.1rem',
+          borderImageSlice: 1,
+          borderImageSource: colorMode === 'light' ? 'linear-gradient(38deg, rgba(238,173,19,1) 0%, rgba(255,225,168,1) 35%, rgba(238,166,58,1) 100%)' : 'none',
+          // borderColor: '#'
+          // border: colorMode === 'dark' ? 'none' : 'thin solid linear-gradient(38deg, rgba(238,173,19,1) 0%, rgba(255,225,168,1) 35%, rgba(238,166,58,1) 100%)'
+        }}>
+          {colorMode === 'dark' ? <Img src='/gradient.webp' w='calc(100% - 1px)' h='calc(100% - 1px)' sx={{position: 'absolute'}} /> : null} 
         </Box>
         <BoxShadow
           styles={{ 
             x: shiftX,
             y: shiftY,
+            top: 0,
+            left: 0,
           }}
           position='absolute'
           onMouseRef={viewRef}
