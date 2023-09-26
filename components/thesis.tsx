@@ -21,7 +21,7 @@ export function Thesis({
         maxWidth: '18.75rem',
         p: '0.05rem',
         borderRadius: '0.3rem',
-        background: 'linear-gradient(180deg, rgba(247,105,255,1) 0%, rgba(100,100,206,1) 35%, rgba(59,190,255,1) 100%)',
+        background: colorMode === 'dark' ? 'linear-gradient(180deg, rgba(247,105,255,1) 0%, rgba(100,100,206,1) 35%, rgba(59,190,255,1) 100%)' : '#EEA63A',
         boxShadow: colorMode === 'light' ? '0 0px 5px 2px #0000001a' : '0 0px 5px 0px #4b5cfb',
       }}
     >
