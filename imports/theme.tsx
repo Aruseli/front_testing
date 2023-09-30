@@ -48,6 +48,34 @@ const themeChakra = extendTheme({
         default: '#D9D9D9',
         _dark: '#004D74',
       },
+      chronicleBgGraphiteWhite: {
+        default: 'graphite.900',
+        _dark: 'white',
+      },
+      chronicleBgGoldBlue: {
+        default: 'gold.100',
+        _dark: 'blue.400',
+      },
+      chronicleBgLightGraphiteDarkBlue: {
+        default: 'graphite.200',
+        _dark: 'blue.900',
+      },
+      chronicleTextTitleGoldBlue: {
+        default: 'gold.800',
+        _dark: 'blue.200',
+      },
+      chronicleTextGraphiteWhite: {
+        default: 'graphite.900',
+        _dark: 'white',
+      },
+      chronicleTextWhiteGraphite: {
+        default: 'white',
+        _dark: 'graphite.900',
+      },
+      chronicleTextSubtitleGoldBlue: {
+        default: 'gold.900',
+        _dark: 'blue.300',
+      },
     },
   },
   styles: {
@@ -63,9 +91,10 @@ const themeChakra = extendTheme({
     heading: "'Zen Kaku Gothic Antique', sans-serif",
   },
   fontSizes: {
-    '2xs': "calc(0.5rem + 0.5vmax)",
-    xs: "calc(0.75rem + 0.5vmax)",
-    sm: 'calc(0.95rem + 0.5vmax)', //"0.875rem",
+    '3xs': "calc(0.2rem + 0.7vmax)",
+    '2xs': "calc(0.5rem + 1vmax)",
+    xs: "calc(0.75rem + 1vmax)",
+    sm: 'calc(0.95rem + 1vmax)', //"0.875rem",
     md: "calc(1rem + 0.5vmax)",
     lg: "calc(1.5rem + 0.5vmax)",
     xl: "calc(1.35rem + 0.8vmax)",
@@ -89,7 +118,22 @@ const themeChakra = extendTheme({
     darkBg: '#222222',
     cyDark: '#141214',
     blue: {
+      100: '',
+      200: '#36B4FF',
+      300: '#464CA0',
+      400: '#2F3365',
       900: '#19202B',
+    },
+    graphite: {
+      100: '#F2F2F2',
+      200: '#9A9A9A',
+      900: '#4F4F4F',
+    },
+    gold: {
+      100: '#FFE1A8',
+      200: '#FFB600',
+      800: '#EEAD13',
+      900: '#ff9800'
     },
     grayText: '#3a3a3a',
     white: '#ebf8ff',
@@ -165,6 +209,12 @@ const themeChakra = extendTheme({
       fontWeight: 'medium',
       color: 'text',
     },
+    Medium14: {
+      fontSize: '3xs',
+      lineHeight: '1.2',
+      fontWeight: 'medium',
+      color: 'text',
+    },
     Regular30: {
       fontSize: 'lg',
       lineHeight: '1.2',
@@ -179,6 +229,18 @@ const themeChakra = extendTheme({
     },
     Regular20: {
       fontSize: 'xs',
+      lineHeight: '1.5',
+      fontWeight: 'regular',
+      color: 'text',
+    },
+    Regular16: {
+      fontSize: '2xs',
+      lineHeight: '1.5',
+      fontWeight: 'regular',
+      color: 'text',
+    },
+    Regular14: {
+      fontSize: '3xs',
       lineHeight: '1.5',
       fontWeight: 'regular',
       color: 'text',
