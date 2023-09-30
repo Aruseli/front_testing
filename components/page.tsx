@@ -11,6 +11,9 @@ import { Thesis } from './thesis';
 import { ThesisDescription } from './thesis-description';
 import { Podcast } from './podcast/podcast';
 import { Member } from './crew/member';
+import { Banner, HabrArticle } from './chronicle/habr-article';
+import { TimWrite } from './chronicle/tim-write';
+import { Channeling } from './chronicle/channeling';
 
 export function Page() {
   const [page, setPage] = useQueryStore('page', '/');
@@ -64,6 +67,16 @@ export function Page() {
       </Box>
       <Box width='30rem'>
         <Member />
+      </Box>
+      <Box width='50rem'>
+        <HabrArticle />
+        <Banner />
+      </Box>
+      <Box width='30rem'>
+        <TimWrite />
+      </Box>
+      <Box width='30rem'>
+        <Channeling />
       </Box>
       <Text color='cyDark'>123</Text>
       <Box width='21rem' height='21rem'>

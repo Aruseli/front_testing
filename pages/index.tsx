@@ -1,4 +1,4 @@
-import React, { StrictMode } from 'react';
+import { StrictMode } from 'react';
 import { Page } from '../components/page';
 import { Providers } from '../imports/providers';
 
