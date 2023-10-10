@@ -14,12 +14,15 @@ import { Member } from './crew/member';
 import { Banner, HabrArticle } from './chronicle/habr-article';
 import { TimWrite } from './chronicle/tim-write';
 import { Channeling } from './chronicle/channeling';
+import { Chart } from './words/chart';
+import {  RawTable, TableWithFilter } from './words/table-with-filter';
+import { Table } from './words/filter-table';
 
 export function Page() {
   const [page, setPage] = useQueryStore('page', '/');
 
   return (<Box
-      w='100vw'
+      w='100%'
       h='100vh'
       position='relative'
       display='flex'
@@ -77,6 +80,18 @@ export function Page() {
       </Box>
       <Box width='30rem'>
         <Channeling />
+      </Box>
+      <Box width='1fr'>
+        <Chart />
+      </Box>
+      <Box width='100%'>
+        <TableWithFilter />
+      </Box>
+      <Box width='100%'>
+        <RawTable />
+      </Box>
+      <Box width='1fr'>
+        <Table />
       </Box>
       <Text color='cyDark'>123</Text>
       <Box width='21rem' height='21rem'>
