@@ -1,8 +1,4 @@
-import { Box, Img, Text, useColorMode } from '@chakra-ui/react';
-import React from 'react';
-import { BoxShadow } from '../flag/box-shadow';
-import { IconProvider } from '../icons/icons';
-import { CgArrowLongRightC } from 'react-icons/cg';
+import { Box, Text, useColorMode } from '@chakra-ui/react';
 import { Arrow } from '../icons/arrow';
 
 export function TimWrite({
