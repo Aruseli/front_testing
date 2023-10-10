@@ -5,7 +5,7 @@ import { mode, StyleFunctionProps } from '@chakra-ui/theme-tools';
 const config: ThemeConfig = {
   initialColorMode: 'light',
   useSystemColorMode: false,
-  cssVarPrefix: 'deepCase',
+  cssVarPrefix: 'deepSite',
 }
 
 const themeChakra = extendTheme({ 
@@ -18,8 +18,23 @@ const themeChakra = extendTheme({
       error: 'red.500',
       text: {
         default: '#060608',
+        _dark: 'darkBg',
+      },
+
+      // table styles
+      borderColorTable: {
+        default: 'gray.900',
         _dark: 'white',
       },
+      headerBgTable: {
+        default: 'gray.200',
+        _dark: 'darkBg',
+      },
+      bgTable: {
+        default: 'gray.10',
+        _dark: 'white',
+      },
+
       flagBackground: {
         default: 'white',
         _dark: 'darkBg',
