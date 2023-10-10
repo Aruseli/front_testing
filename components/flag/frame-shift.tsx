@@ -60,7 +60,6 @@ export function DeepFrameShift({
     };
   }, []);
   
-  console.log('mousePosition', mousePosition.x, mousePosition.y);
   const variants = {
     default: {
       x: mousePosition.x,

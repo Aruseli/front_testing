@@ -125,7 +125,6 @@ export function DeepFlag({
           variants={variantDescSide}
           onTap={() => {
             setRevert(!revert);
-            console.log('tap', revert);
           }}
           sx={{
             alignItems: 'center',

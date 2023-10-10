@@ -223,9 +223,7 @@ export const Podcast = React.memo<any>(({
 					// 	console.log('media_2', media);
 					// }}
 					onClick={() => {
-						console.log('media_click', media);
 						setMedia(media => !media);
-						console.log('media_click', media);
 					}}
 				>
 					<PodcastOpenFrameContent 

@@ -36,22 +36,13 @@ export const DeepFrameMouseShift = React.memo<any>(({
   function handleMouse(event) {
     const rect = event.currentTarget.getBoundingClientRect();
     // const rect = viewRef.current?.getBoundingClientRect();
-    console.log('rect', rect)
     x.set(event.clientX - (rect.left / 2));
     y.set(event.clientY - (rect.top / 2));
-    console.log('rect/2', rect)
-    console.log('event.clientX', event.clientX) //mouse position x
-    console.log('event.clientY', event.clientY) //mouse position y
-    console.log('rect.left', rect.left);
-    console.log('rect.right', rect.right);
   }
 
   function handleMouseLeave({x, y}) {
     shiftX.set(x);
     shiftY.set(y);
-    console.log('shiftX', shiftX)
-    console.log('shiftY', shiftY)
-    console.log('mouse leave')
   }
 
   useEffect(() => {
