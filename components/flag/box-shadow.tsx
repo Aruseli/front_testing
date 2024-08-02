@@ -54,7 +54,7 @@ export const BoxShadow = React.memo<any>(({
           whileHover="hoverState"
           whileTap="tapState"
         >
-          {children}
+          <Box>{children}</Box>
         </Box>
   )
 })
