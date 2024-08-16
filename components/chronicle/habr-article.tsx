@@ -29,7 +29,7 @@ export function HabrArticle({
   )
 }
 
-export function Banner({src = '/chronical/banner.webp'}:{src?: string}) {
+export function Banner({src = '/chronical/react_desktop.webp'}:{src?: string}) {
   return (<BoxShadow>
       <Box>
         <Img src={src} />

@@ -1,13 +1,16 @@
 import { StrictMode } from 'react';
 import { Page } from '../components/page';
 import { Providers } from '../imports/providers';
+import { VFXProvider } from 'react-vfx';
 
 
 export default function IndexPage() {
   return (<StrictMode>
-      <Providers>
-        <Page />
-      </Providers>
+      <VFXProvider>  
+        <Providers>
+          <Page />
+        </Providers>
+      </VFXProvider>
     </StrictMode>
   );
 }

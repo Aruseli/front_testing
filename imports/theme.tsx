@@ -18,7 +18,7 @@ const themeChakra = extendTheme({
       error: 'red.500',
       text: {
         default: '#060608',
-        _dark: 'darkBg',
+        _dark: 'white',
       },
 
       // table styles
@@ -165,27 +165,49 @@ const themeChakra = extendTheme({
   },
   textStyles: {
     h1: {
-      fontSize: '4xl',
-      fontWeight: 'medium',
+      fontSize: 'clamp(2rem, 3vw + 0.5rem, 3rem)',
+      fontWeight: 'bold',
       textTransform: 'uppercase',
       lineHeight: '1.2',
     },
     h2: {
-      fontSize: '2xl',
+      fontSize: 'clamp(1.5rem, 2vw + 0.5rem, 2.25rem)',
       fontWeight: 'bold',
       textTransform: 'uppercase',
     },
     h3: {
-      fontWeight: 'regular',
+      fontWeight: 'semibold',
       lineHeight: '1.2',
       textTransform: 'uppercase',
-      fontSize: 'xl',
+      fontSize: 'clamp(1.375rem, 1.5vw + 1rem, 2rem)',
     },
     h4: {
-      fontWeight: 'regular',
+      fontWeight: 'semibold',
       lineHeight: '1.2',
       textTransform: 'uppercase',
-      fontSize: 'md',
+      fontSize: 'clamp(1.15rem, 1.3vw + 0.5rem, 1.5rem)',
+      color: 'text',
+    },
+    h5: {
+      fontWeight: 'semibold',
+      lineHeight: '1.2',
+      // textTransform: 'uppercase',
+      fontSize: 'clamp(1.1rem, 1.2vw + 0.5rem, 1.4rem)',
+      color: 'text',
+    },
+    body1: {
+      fontWeight: 'regular',
+      lineHeight: '1.2',
+      // textTransform: 'uppercase',
+      fontSize: 'clamp(0.8rem, 1vw + 0.5rem, 1rem)',
+      color: 'text',
+    },
+    italic: {
+      fontWeight: 'regular',
+      lineHeight: '1.2',
+      fontStyle: 'italic',
+      // textTransform: 'uppercase',
+      fontSize: 'clamp(0.8rem, 1vw + 0.5rem, 1rem)',
       color: 'text',
     },
     Medium36: {

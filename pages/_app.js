@@ -2,6 +2,7 @@ import 'normalize.css';
 import { generateApolloClient } from '@deep-foundation/hasura/client';
 import { DeepClient, DeepProvider } from "@deep-foundation/deeplinks/imports/client";
 import { ApolloProvider} from '@apollo/client/index.js';
+import '../imports/i18n';
 
 function App({ Component, pageProps }) {
 

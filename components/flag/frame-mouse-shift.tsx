@@ -25,25 +25,39 @@ export const DeepFrameMouseShift = React.memo<any>(({
   const ref = useRef<any>();
   const viewRef = useRef<any>();
     
-  const x = useMotionValue(150);
-  const y = useMotionValue(150);
-  const springX = useSpring(x, { mass: 0.5, bounce: 0.25, stiffness: 200, damping: 100 });
-  const springY = useSpring(y, { mass: 0.5, bounce: 0.25, stiffness: 200, damping: 100 });
+  // const x = useMotionValue(150);
+  // const y = useMotionValue(150);
+  // const springX = useSpring(x, { mass: 0.5, bounce: 0.25, stiffness: 200, damping: 100 });
+  // const springY = useSpring(y, { mass: 0.5, bounce: 0.25, stiffness: 200, damping: 100 });
+
     
-  const shiftX = useTransform(springY, [0, 300], [45, -45]);
-  const shiftY = useTransform(springX, [0, 300], [-45, 45]);
+  // const shiftX = useTransform(springY, [0, 300], [45, -45]);
+  // const shiftY = useTransform(springX, [0, 300], [-45, 45]);
+  const CENTER = 225;
+  const x = useMotionValue(CENTER);    
+  const y = useMotionValue(CENTER);    
+  const springX = useSpring(x, { mass: 0.5, bounce: 0.25, stiffness: 200, damping: 100 });    
+  const springY = useSpring(y, { mass: 0.5, bounce: 0.25, stiffness: 200, damping: 100 });
+
+  const shiftX = useTransform(springX, [0, 450], [-45, 45]);    
+  const shiftY = useTransform(springY, [0, 450], [-45, 45]); 
 
   function handleMouse(event) {
     const rect = event.currentTarget.getBoundingClientRect();
     // const rect = viewRef.current?.getBoundingClientRect();
-    x.set(event.clientX - (rect.left / 2));
-    y.set(event.clientY - (rect.top / 2));
+    // x.set(event.clientX - (rect.left / 2));
+    // y.set(event.clientY - (rect.top / 2));
+    x.set((event.clientX - (rect.left)));      
+    y.set(event.clientY - (rect.top));
   }
-
-  function handleMouseLeave({x, y}) {
-    shiftX.set(x);
-    shiftY.set(y);
-  }
+  function handleMouseLeave({x: nx, y: ny}) {      
+    x.set(nx);      
+    y.set(ny);    
+  }  
+  // function handleMouseLeave({x, y}) {
+  //   shiftX.set(x);
+  //   shiftY.set(y);
+  // }
 
   useEffect(() => {
     if (viewRef.current) {
@@ -71,8 +85,9 @@ export const DeepFrameMouseShift = React.memo<any>(({
         placeContent: "center",
         overflow: 'hidden',
       }}
-      onMouseMove={() => handleMouse(event)}
-      onMouseLeave={() => handleMouseLeave({x, y})}
+      onMouseMove={(event) => handleMouse(event)}
+      // onMouseLeave={() => handleMouseLeave({x, y})}
+      onMouseLeave={() => handleMouseLeave({ x: CENTER, y: CENTER })} 
       >
       <Box
         sx={{
