@@ -99,7 +99,7 @@ export const DocumentationMenuItem = memo(function DocumentationMenuItem({
           }}
           variants={{ collapsed: { scale: 0.8 }, open: { scale: 1 } }}
           // @ts-ignore
-          transition={{ duration: 3.8, ease: [0.04, 0.62, 0.23, 0.98] }}
+          transition={{ duration: 0.8, ease: [0.04, 0.62, 0.23, 0.98] }}
           onClick={onOpen}
           rightIcon={children && (
             <motion.div animate={{ rotate: open ? 180 : 0 }}>
@@ -123,7 +123,7 @@ export const DocumentationMenuItem = memo(function DocumentationMenuItem({
                 open: { opacity: 1, height: "auto" },
                 collapsed: { opacity: 0, height: 0 }
               }}
-              transition={{ duration: 3.8, ease: [0.04, 0.62, 0.23, 0.98] }}
+              transition={{ duration: 0.8, ease: [0.04, 0.62, 0.23, 0.98] }}
             >
               <DocumentationMenuItem 
                 key={c.id}

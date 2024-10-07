@@ -6,41 +6,42 @@ import { MoonIcon, SunIcon } from '@chakra-ui/icons';
 
 const MotionBox = motion(Box);
 
-const variants = {
-  rise: {
-    opacity: 1,
-    y: '-1.15em', 
-    x: '-0.22em',
-  },
-  down: {
-    opacity: 0, 
-    y: 0, 
-    rotate: -30, 
-    scale: 0.2,
-  }
-}
-
 export const Switch = () => {
   const {colorMode, toggleColorMode} = useColorMode();
   const lightControls = useAnimation();
   const darkControls = useAnimation();
+  const bgControls = useAnimation();
 
  useEffect(() => {
     if (colorMode === 'dark') {
-      lightControls.start({ opacity: 0, y: 0, rotate: -30, scale: 0.1 });
-      darkControls.start({ opacity: 1, y: '-1.15em', x: '-0.26em', scale: 1, rotate: 0 });
+      lightControls.start({ opacity: 0, y: '1em', rotate: -30, scale: 0.1 });
+      darkControls.start({ opacity: 1, y: '0', scale: 1, rotate: 0 });
+      bgControls.start({opacity: [0, 1], backgroundColor: '#b9dcfa'});
     } else {
-      lightControls.start({ opacity: 1, y: '-1.15em', x: '-0.26em', rotate: 0, scale: 1 });
-      darkControls.start({ opacity: 0, y: 0, rotate: -30, scale: 0.1 });
+      lightControls.start({ opacity: 1, y: '0', rotate: 0, scale: 1 });
+      darkControls.start({ opacity: 0, y: '1em', rotate: -30, scale: 0.1 });
+      bgControls.start({opacity: [0, 1], backgroundColor: '#003F91'});
     }
-  }, [colorMode, lightControls, darkControls]);
+  }, [colorMode, lightControls, darkControls, bgControls]);
 
   const handleToggleColorMode = () => {
     toggleColorMode();
   }
 
   return (
-    <Box as="label" pos="fixed" top='1rem' right='1rem'>
+    <Box w="2.25rem"h="2.25rem"
+      borderRadius='full'
+      pos="relative"
+    >
+      <MotionBox 
+        borderRadius='full'
+        w="100%"
+        h="100%"
+        animate={bgControls}
+        transition={{ duration: 0.9 }}
+        pos="absolute"
+        top={0}
+      />
       <Button
         aria-label="Toggle Dark Mode"
         onClick={handleToggleColorMode}
@@ -49,39 +50,36 @@ export const Switch = () => {
         borderColor='switchModeBorder'
         borderWidth='thin'
         pos='relative'
+        width='100%'
+        minWidth={0}
+        height='100%'
         bg='colorModeButton'
         _hover={{ bg: 'colorModeButton' }}
       >
-        <Box pos="relative" zIndex="1">
-          <MotionBox
-            viewBox="0 0 12 12"
-            aria-hidden="true"
-            aria-label="light mode"
-            animate={lightControls}
-            transition={{ duration: 0.9 }}
-            pos="absolute"
-            top="0.45em"
-            left="-0.225em"
-            width="0.75em"
-            height="0.75em"
-          >
-            <MoonIcon color='blue.200' />
-          </MotionBox>
-          <MotionBox
-            viewBox="0 0 12 12"
-            aria-hidden="true"
-            aria-label="dark mode"
-            animate={darkControls}
-            transition={{ duration: 0.9 }}
-            pos="absolute"
-            top="0.45em"
-            left="-0.225em"
-            width="0.75em"
-            height="0.75em"
-          >
-            <SunIcon color='blue.500' />
-          </MotionBox>
-        </Box>
+        <MotionBox
+          aria-hidden="true"
+          aria-label="light mode"
+          animate={lightControls}
+          transition={{ duration: 0.9 }}
+          pos="absolute"
+          x='25%'
+          width='1rem'
+          height='1rem'
+        >
+          <MoonIcon color='blue.200' />
+        </MotionBox>
+        <MotionBox
+          aria-hidden="true"
+          aria-label="dark mode"
+          animate={darkControls}
+          transition={{ duration: 0.9 }}
+          pos="absolute"
+          x='25%'
+          width='1rem'
+          height='1rem'
+        >
+          <SunIcon color='blue.500' />
+        </MotionBox>
       </Button>
     </Box>
   );

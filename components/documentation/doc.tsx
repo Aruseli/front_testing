@@ -97,8 +97,9 @@ export const Documentation = memo(function Documentation() {
                
               />
             ))}
-          </Box>}
-          breakpoint='(min-width: 820px)' 
+          </Box>
+          }
+          // breakpoint='(min-width: 820px)' 
         />
       </Box>
       <Hide breakpoint='(max-width: 820px)'>
